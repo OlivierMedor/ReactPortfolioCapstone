@@ -1,0 +1,52 @@
+.promo-section h3 {
+    color:  #ece907;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.restaurant-statement {
+    margin-top: 10px;
+}
+
+.reserve-a-table {
+    margin-top: 25px;
+    background-color: #ece907;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.promo-heading:hover {
+    transform: skewX(30deg);
+	transition: 2s;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.promo {
+    background-color: rgb(54, 104, 45);
+    color: beige;
+    /* background-size: cover; */
+    /* background-position: center; */
+    position: relative;
+    /* background-image: url("assets/how-to-start-a-garden-from-scratch.jpg"); */
+}
+
+.featured-promo-image {
+    float: right;
+    height: 220px;
+    width: 200px;
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+    border-radius: 12px;
+}
+
+.promo-section {
+    float: left;
+    width: 200px;
+}

@@ -31,9 +31,128 @@ header li a {
   text-decoration: none;
 }
 
+.hero-banner {
+  background-color: rgb(54, 104, 45);
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "first-border article second-border";
+}
+
+.hero-banner article {
+  grid-area: article;
+}
+
+.specials {
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "first-border article second-border";
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.specials article {
+  grid-area: article;
+}
+
+.specials button {
+  float: right;
+  margin-top: 25px;
+  background-color: #ece907;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.bookin-form button {
+  float: right;
+  margin-top: 25px;
+  background-color: #ece907;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.specials .specials-header-text {
+  float: left;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "first-border section second-border";
+}
+
+main section {
+  grid-area: section;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "first-border section second-border";
+}
+
+.about section {
+  grid-area: section;
+  background-color: beige;
+  min-height: 600px;
+}
+
+.booking {
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "first-border section second-border";
+}
+
+.booking section {
+  grid-area: section;
+  background-color: beige;
+  min-height: 600px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "first-border section second-border";
+}
+
+.menu section {
+  grid-area: section;
+  background-color: beige;
+  min-height: 600px;
+}
+
 footer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 2fr repeat(4, 2fr) 2fr;
+  grid-template-areas: "first-border logo nav contact social second-border";
+  margin-top: 50px;
+}
+
+footer img {
+  grid-area: logo;
+  padding-top: 5px;
+}
+
+footer Nav {
+  grid-area: nav;
+  padding-left: 10px;
+}
+
+footer .contact {
+  grid-area: contact;
+}
+
+footer .social {
+  grid-area: social;
 }
 
 @media (prefers-reduced-motion: no-preference) {

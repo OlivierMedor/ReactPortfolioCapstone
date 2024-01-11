@@ -1,0 +1,27 @@
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+section {
+    display: flex;
+}
+
+main article {
+    background-color: beige;
+    border-radius: 25px;
+    margin: 5px 5px 5px 5px;
+    flex: 1;
+}
+
+main article h2 {
+    color: rgb(103, 73, 18);
+}
+
+main article img {
+    height: 150px;
+    width: 200px;
+}
