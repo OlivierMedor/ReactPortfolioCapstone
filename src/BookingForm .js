@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-function BookingForm() {
+function BookingForm(props) {
     const [bookings, setBookings] = useState({
       reservationTime: '',
       reservationDate: '',
@@ -26,9 +26,7 @@ function BookingForm() {
             <select
             id="res-time "
             onChange={(e) => {
-              setBookings(previousState => {
-                return { ...previousState, reservationTime: e.target.value }
-              });
+              props.handleUpdateTimes(e.target.value);
             }}
             >
                 <option>17:00</option>

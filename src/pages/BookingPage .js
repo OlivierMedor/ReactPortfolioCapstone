@@ -1,12 +1,12 @@
 import BookingForm from "../BookingForm ";
 
-function BookingPage() {
+function BookingPage(props) {
     return (
       <>
       <div className="booking">
         <section>
           <h1>Reserve A Table</h1>
-        <BookingForm />
+          <BookingForm handleUpdateTimes={ props.handleUpdateTimes } />
         </section>
       </div>
       </>

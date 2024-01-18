@@ -1,6 +1,6 @@
 import "./Main.css"
 
-function Main() {
+function Main(props) {
     return (
       <>
         <main>
