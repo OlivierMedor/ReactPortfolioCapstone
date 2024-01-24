@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import './App.css';
 import Header from './Header';
@@ -10,7 +10,7 @@ import About from './pages/About';
 import Menu from './pages/Menu';
 import BookingPage from './pages/BookingPage ';
 
-const initializeTimes = () => [17, 18, 19, 20, 21, 22];
+const fetchData = () => [17, 18, 19, 20, 21, 22];
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -23,6 +23,17 @@ const reducer = (state, action) => {
 
 export default function App() {
 const [availableTimesList, dispatch] = useReducer(reducer, initializeTimes());
+
+useEffect(() => {
+  fetch("https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js",
+  {
+    method: "POST",
+    body: new Date()
+  }
+  )
+  .then((res) => res)
+  .then((data) => console.log(data))
+});
 
 const handleUpdateTimes = (newTime) => {
   dispatch({ type: "updateTime", time: newTime });
