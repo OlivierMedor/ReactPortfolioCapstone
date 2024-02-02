@@ -42,6 +42,22 @@ header li a {
   grid-area: article;
 }
 
+.available-times {
+  display: grid;
+  grid-template-columns: 2fr 4fr 4fr 2fr;
+  grid-template-areas: "first-border availablTimes choseTime second-border";
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.available-times ul {
+  grid-area: availablTimes;
+}
+
+.available-times h3 {
+  grid-area: choseTime;
+}
+
 .specials {
   display: grid;
   grid-template-columns: 2fr 8fr 2fr;
@@ -113,9 +129,23 @@ main section {
 }
 
 .booking section {
+  display: block;
   grid-area: section;
   background-color: beige;
   min-height: 600px;
+}
+
+
+.confirmed-booking {
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "first-border section second-border";
+}
+
+.confirmed-booking section {
+  display: block;
+  grid-area: section;
+  min-height: 200px;
 }
 
 .menu {

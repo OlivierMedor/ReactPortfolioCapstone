@@ -6,7 +6,7 @@ function BookingPage(props) {
       <div className="booking">
         <section>
           <h1>Reserve A Table</h1>
-          <BookingForm handleUpdateTimes={ props.handleUpdateTimes } />
+          <BookingForm updateTime={ props.updateTime } availableTimesList={ props.availableTimesList } setAvailableTimesList={ props.setAvailableTimesList } submitForm={ props.submitForm } />
         </section>
       </div>
       </>

@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 import "./HeroBanner.css"
 
 function HeroBanner () {
+    const navigate = useNavigate();
     return (
     <>
         <section className="hero-banner">
@@ -12,7 +15,7 @@ function HeroBanner () {
                 <br />
                     <div className="restaurant-statement">We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist</div>
                     <br />
-                    <button className="reserve-a-table">Reserve A Table</button>
+                    <button onClick={()=> navigate("/BookingPage")} className="reserve-a-table">Reserve A Table</button>
                 </p>
                 </section>
                 <img className="featured-promo-image" alt="burgers and fries" src={require('./assets/burgersandfries.png')} />

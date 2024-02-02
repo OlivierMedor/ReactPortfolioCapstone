@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useReducer, useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
@@ -9,53 +9,88 @@ import WeeklySpecials from './WeeklySpecials';
 import About from './pages/About';
 import Menu from './pages/Menu';
 import BookingPage from './pages/BookingPage ';
-
-const fetchData = () => [17, 18, 19, 20, 21, 22];
+import ConfirmedBooking from './ConfirmedBooking';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "updateTime":
-      return [action.time]
+    case "setBooking":
+      return { ...state, ...action.payload }
     default:
       return state;
   }
 };
 
+const availableTimeListReducer = (state, action) => {
+  switch (action.type) {
+    case "updateTimeList":
+      return { ...state, availableTimes: [ ...action.payload ] }
+    case "chosenTime":
+      return { ...state, chosenTime: action.payload }
+    default:
+      return state;
+  }
+}
+
 export default function App() {
-const [availableTimesList, dispatch] = useReducer(reducer, initializeTimes());
+const [formData, setFormData] = useReducer(reducer, {});
+
+const [availableTimesList, setAvailableTimesList] = useReducer(availableTimeListReducer, { availableTimes: [], chosenTIme: '' });
+
+const [didFormSubmit, setDidFormSubmit] = useState(false);
+
+const [successfullFormSubmit, updateFormSubmit] = useState(false);
+
+const navigate = useNavigate();
+
+const submitForm = (data) => {
+  setFormData({type: 'setBooking', payload: data });
+  setDidFormSubmit(true);
+}
 
 useEffect(() => {
-  fetch("https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js",
-  {
-    method: "POST",
-    body: new Date()
+  if(didFormSubmit) {
+    fetch(`/api/availableTimes`)
+    .then((res) => res.json())
+    .then((data) => updateFormSubmit(true))
   }
-  )
-  .then((res) => res)
-  .then((data) => console.log(data))
-});
+}, [didFormSubmit]);
 
-const handleUpdateTimes = (newTime) => {
-  dispatch({ type: "updateTime", time: newTime });
+useEffect(() => {
+  fetch(`/api/availableTimes`)
+    .then((res) => res.json())
+    .then((data) => setAvailableTimesList({type: 'updateTimeList', payload: data.availableTimes }))
+}, []);
+
+useEffect(() => {
+  if(successfullFormSubmit) {
+    navigate("/Confirmed-Booking");
+  }
+}, [successfullFormSubmit]);
+
+const updateTime = (newTime) => {
+  setAvailableTimesList({type: 'chosenTime', payload: newTime })
 };
 
-const displayAvailableTimesList = availableTimesList.map((time, index) => <li key={index}>{time}</li>);
+const displayAvailableTimesList = availableTimesList.availableTimes.map((times, index) => <li key={index}>{times.time}</li>);
 
   return (
     <>
     <Header></Header>
     <HeroBanner></HeroBanner>
-    <h2 data-testid="seatsAvailable">Seats Available</h2>
-    <ul>
-      { displayAvailableTimesList }
-    </ul>
+    <div className="available-times">
+      <ul>
+        { displayAvailableTimesList }
+      </ul>
+      <h3>{ availableTimesList?.chosenTime && <div>{ availableTimesList.chosenTime }</div>}</h3>
+    </div>
     <WeeklySpecials></WeeklySpecials>
     <Routes>
       <Route index element={<Main />} />
       <Route path="/Home" element={<Main />} />
       <Route path="/About" element={<About />} />
       <Route path="/Menu" element={<Menu />} />
-      <Route path="/BookingPage" element={<BookingPage handleUpdateTimes={ handleUpdateTimes }/>} />
+      <Route path="/Confirmed-Booking" element={<ConfirmedBooking />} />
+      <Route path="/BookingPage" element={<BookingPage updateTime={ updateTime } availableTimesList={ availableTimesList } submitForm={ submitForm } />} />
     </Routes>
     <Footer></Footer>
     </>

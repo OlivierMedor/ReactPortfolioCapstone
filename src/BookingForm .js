@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+
 function BookingForm(props) {
     const [bookings, setBookings] = useState({
       reservationTime: '',
       reservationDate: '',
       numberOfGuest: 1,
-      occasion: ''
+      occasion: 'Birthday'
     });
 
     return (
       <div className="bookin-form">
-        <form style={{ display: "grid", maxWidth: "200px", gap: "20px" }}>
+        <form style={{ display: "grid", maxWidth: "200px", gap: "20px" }} onSubmit={(e) => { 
+          e.preventDefault();
+          props.submitForm(bookings);
+          }}>
             <label htmlFor="res-date">Choose date</label>
             <input
             onChange={(e) => {
@@ -26,15 +30,16 @@ function BookingForm(props) {
             <select
             id="res-time "
             onChange={(e) => {
-              props.handleUpdateTimes(e.target.value);
+              props.updateTime(e.target.value )
+
+              setBookings(previousState => {
+                return { ...previousState, reservationTime: e.target.value }
+              });
             }}
             >
-                <option>17:00</option>
-                <option>18:00</option>
-                <option>19:00</option>
-                <option>20:00</option>
-                <option>21:00</option>
-                <option>22:00</option>
+              {
+                props.availableTimesList.availableTimes.map((times, index) => <option key={ index }>{ times.time }</option>)
+              }
             </select>
             <label htmlFor="guests">Number of guests</label>
             <input
