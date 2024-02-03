@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function BookingForm(props) {
     const [bookings, setBookings] = useState({
-      reservationTime: '',
+      reservationTime: '17',
       reservationDate: '',
       numberOfGuest: 1,
       occasion: 'Birthday'
@@ -25,6 +25,7 @@ function BookingForm(props) {
             }}
             type="date"
             id="res-date"
+            required
             />
             <label htmlFor="res-time">Choose time</label>
             <select

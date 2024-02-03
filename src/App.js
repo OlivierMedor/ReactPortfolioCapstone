@@ -77,12 +77,12 @@ const displayAvailableTimesList = availableTimesList.availableTimes.map((times, 
     <>
     <Header></Header>
     <HeroBanner></HeroBanner>
-    <div className="available-times">
+    {/* <div className="available-times">
       <ul>
         { displayAvailableTimesList }
       </ul>
       <h3>{ availableTimesList?.chosenTime && <div>{ availableTimesList.chosenTime }</div>}</h3>
-    </div>
+    </div> */}
     <WeeklySpecials></WeeklySpecials>
     <Routes>
       <Route index element={<Main />} />
