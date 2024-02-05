@@ -36,24 +36,14 @@ const [formData, setFormData] = useReducer(reducer, {});
 
 const [availableTimesList, setAvailableTimesList] = useReducer(availableTimeListReducer, { availableTimes: [], chosenTIme: '' });
 
-const [didFormSubmit, setDidFormSubmit] = useState(false);
-
 const [successfullFormSubmit, updateFormSubmit] = useState(false);
 
 const navigate = useNavigate();
 
 const submitForm = (data) => {
   setFormData({type: 'setBooking', payload: data });
-  setDidFormSubmit(true);
+  updateFormSubmit(true);
 }
-
-useEffect(() => {
-  if(didFormSubmit) {
-    fetch(`/api/availableTimes`)
-    .then((res) => res.json())
-    .then((data) => updateFormSubmit(true))
-  }
-}, [didFormSubmit]);
 
 useEffect(() => {
   fetch(`/api/availableTimes`)
